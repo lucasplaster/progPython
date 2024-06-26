@@ -1,0 +1,48 @@
+# Verificar se um CPF é valido.
+# Criar um CPF que o algortimoentenda como valido.
+#gera um CPF e verifica se o mesmo é valido.
+import random
+import time
+import os
+soma = 0
+digito_a, digito_b = 0,0
+contador = 10
+resultado = False
+numeros = ''
+# gera os primeiros 9 numeros do CPF
+# após isso usa o algoritimo de verifcação anterior para gerar os 2 digitos verificadores
+for i in range(9):
+    numeros += str(random.randint(0,9))
+    time.sleep(1)
+
+# gera o primeiro digito
+
+for i in range(len(numeros)):
+    soma = soma + int(numeros[i]) * contador
+    contador = contador - 1
+    time.sleep(1)
+if (soma * 10) % 11 > 9:
+    digito_a = 0
+else:
+    digito_a = (soma * 10) % 11
+
+
+# gera o segundo digito
+
+contador = 11
+numeros = numeros + str(digito_a)
+soma = 0
+for i in range(len(numeros)):
+    soma = soma + int(numeros[i]) * contador
+    contador = contador -1
+    time.sleep(1)
+if (soma*10) % 11 > 9:
+    digito_b = 0
+else:
+    digito_b = (soma * 10) % 11
+numeros = numeros + str(digito_b)
+
+# mostra o usuario o numero gerado.
+#print(f"Os digitos verificados são {digito_a} e {digito_b}.")
+print(f"O CPF validado é: {numeros[0]}{numeros[1]}{numeros[2]}.{numeros[3]}{numeros[4]}{numeros[5]}.{numeros[6]}{numeros[7]}{numeros[8]}-{numeros[9]}{numeros[10]}")
+
